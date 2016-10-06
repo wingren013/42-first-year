@@ -1,0 +1,84 @@
+http://left404.com/2011/01/04/converting-x86-assembly-from-masm-to-nasm-3/
+
+nasm is case sensitive
+
+proc and endp do not exist in nasm
+
+procedures are declared as:
+
+name:
+...
+...
+...
+ret
+
+yes this is confusing as shit
+
+.data and .code are changed to:
+
+SECTION .data
+
+SECTION .text
+
+data labels are automatically treated as addresses unless enclosed in square brackets, there is no offset keyword
+
+mov edx, offset label becomes mov edx, label
+mov ax, label becomes mov ax, [label]
+
+mov dword ptr [ebp], 4 becomes mov DWORD [ebp], 4
+
+size must be specified when dereferencing
+
+mov [wordlabel], 16 becomes mov WORD [wordlabel], 16
+
+data label syntax is different
+
+name type value becomes name: type value
+
+type names are different to for some bizarre fucked up reason, and no they are the same names as normal for everything else
+seriously why the fuck
+
+BYTE becomes  db
+WORD becomes  dw
+DWORD becomes dd
+QWORD becomes dq
+
+number DWORD 8 becomes number: dd 8
+
+
+? is not recognized
+
+name type ? becomes name: restype count
+
+count is the number of blocks of restype to reserve
+
+restype refers to resb resw resd and resq
+
+repetitions are handled differently
+
+name type count dup (value) becomes name: TIMES count type value
+
+so
+
+string DWORD 80 dup (0) becomes string: TIMES 80 DWORD 0
+string DWORD 80 dup (?) becomes string: TIMES 80 DWORD resd 1
+
+name MACRO ar1, arg2, ...
+...
+ENDM
+
+becomes
+
+%macro name argcount
+...
+%endmacro
+
+macro arguments are referenced via %1, %2,... %n corresponding to the 1st 2nd and nth arguments respectively
+
+= not supported use EQU
+
+global symbols must be explicitely exported
+
+TITLE does not exist just use a comment like you normally do
+
+INCLUDE file.inc becomes %include "file.inc"
