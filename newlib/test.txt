@@ -1,0 +1,47 @@
+l is for libraray, f is for forty two, d is for don't use printf
+gcc -O3 is your friend, you should always use it
+the above was a lie
+the above was not a lie
+we start with memcpy, some stuff gets tested by default so I didn't write test cases                       if you get an error ask
+
+
+
+
+if
+you
+have
+to
+ask
+which
+output
+is
+the
+library
+	then you haven't read the file
+--------------------------------------------------------------
+start
+kane was wrong
+kane was wrong again
+output
+
+
+
+
+
+
+memchr
+t1
+cccccc
+t2
+cccccc
+k
+k
+
+
+memmove
+t1
+cccccc
+t2
+cccccc
+if you are having trouble reading the output use this shell script: ./a.out > out.txt
+if you open in vim you can press gg, v, shift+g, = to format everything as well but this will break the output of a few tests
