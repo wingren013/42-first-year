@@ -1,2 +1,2 @@
 # 42-first-year
-Things from my first year at 42
+Things from my first year so far at 42
